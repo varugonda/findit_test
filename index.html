@@ -11,7 +11,7 @@
             <input type="file" name="pic" accept="image/*">
             <input type="submit">
         </form> -->
-        
+        <!-- https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html -->
         <input type="file" onchange="previewFile()"><br>
         <img src="" height="200" alt="Image preview...">    
 
@@ -27,11 +27,35 @@
          
                 if (file) {
                     reader.readAsDataURL(file); //reads the data as a URL
-                }else {
+                }else{
                     preview.src = "";
                 }
             }
             previewFile();
+        </script>
+
+        <br>
+        <br>
+
+        <p>Click to get current location</p>
+        <button onclick="getLocation()">Try It</button>
+        <p id="demo"></p>
+
+        <script>
+            var x = document.getElementById("demo");
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }else{ 
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                x.innerHTML = "Current Location: <br>Latitude: " + position.coords.latitude + 
+                "<br>Longitude: " + position.coords.longitude;
+            }
         </script>
 
 
